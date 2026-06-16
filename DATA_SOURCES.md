@@ -1,0 +1,162 @@
+# Data Sources
+
+This file documents the origin, license, and processing pipeline for all datasets
+included in or referenced by this repository.
+
+---
+
+## 1. Allergen Epitope Annotations (Positives)
+
+**Source:** Immune Epitope Database (IEDB)
+**URL:** https://www.iedb.org
+**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
+**Citation:** Vita R, et al. "The Immune Epitope Database (IEDB): 2018 update."
+Nucleic Acids Research, 47(D1):D339–D343, 2019. https://doi.org/10.1093/nar/gky1006
+
+**Export file included:** `data/t_cell_b_cell_MHC_II_epitopes.csv`
+
+This CSV was exported directly from the IEDB web interface. It contains
+T-cell, B-cell, and MHC-II epitope records used to derive the positive
+allergen protein set. Full sequences were fetched programmatically from
+UniProt and NCBI Entrez using the accession identifiers in the IEDB export.
+Fetched sequences are cached in `data/iedb_sequence_fetch_cache.csv` for
+reproducibility without requiring network access.
+
+**Downstream processing:** `notebooks/01_curate_allergenicity_data.ipynb`
+(Steps 1A–1H: loading, sequence fetching, filtering, deduplication)
+
+---
+
+## 2. Non-Allergen Protein Sequences (Negatives)
+
+**Source:** UniProtKB / Swiss-Prot
+**URL:** https://www.uniprot.org
+**License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
+See: https://www.uniprot.org/help/license
+
+**Raw export file:** `data/uniprotkb_NOT_taxonomy_id_10239_NOT_tax_2026_04_08.tsv`
+**Approximate size:** 7.9 MB
+**Download date:** 2026-04-08 (encoded in filename)
+
+### How this file was obtained
+
+The negative protein dataset was downloaded **manually** through the UniProt
+web interface at https://www.uniprot.org. The export filename encodes the
+search filters applied at query time:
+
+- `NOT taxonomy_id:10239` — excludes all viral sequences (NCBI Taxonomy ID 10239
+  corresponds to Viruses/viroids)
+- Additional filters applied at query time are documented in the paper.
+  **[ACTION REQUIRED: Please confirm and expand the full UniProt query string here
+  before public release. The filename suggests at least one additional `NOT taxonomy`
+  filter was active at download time.]**
+
+The download was performed using the UniProt website's "Download" function,
+selecting TSV format with all reviewed (Swiss-Prot) entries matching the filter.
+
+### Important note on reproduction
+
+Exact reproduction of the raw TSV export requires repeating the documented
+UniProt web search manually. The UniProt database is updated regularly; running
+the same search on a different date may return a different set of entries.
+The processed downstream files (`data/negatives.csv`, `data/negatives_splitA.csv`,
+`data/negatives_splitB.csv`) are included in this repository to support
+reproducibility without requiring re-download.
+
+**Downstream processing:** `notebooks/01_curate_allergenicity_data.ipynb`
+(Step 2: standardize headers, remove non-canonical sequences)
+
+---
+
+## 3. DeepAlgPro Benchmark Dataset
+
+**Source:** DeepAlgPro (published benchmark dataset)
+**Reference:** [Add DeepAlgPro citation here]
+**License:** [Confirm DeepAlgPro dataset license before public release]
+
+**Files included:**
+- `data/deepalgpro_all.train.fasta` — training split FASTA
+- `data/deepalgpro_all.test.fasta` — test split FASTA
+- `data/deepalgpro_train_cleaned.csv` — tabular training data
+- `data/deepalgpro_test_cleaned.csv` — tabular test data
+
+These files are used for the DeepAlgPro benchmark comparison reported in the paper.
+The benchmark model was retrained on the XAllergen split using the DeepAlgPro
+architecture; see `notebooks/03_deep_plant_allergy_benchmark.ipynb`.
+
+**[ACTION REQUIRED: Confirm that redistribution of the DeepAlgPro FASTA files is
+permitted under their original license before public release.]**
+
+---
+
+## 4. NCBI Entrez Sequence Fetch Cache
+
+**Source:** NCBI Entrez (fetched via Biopython)
+**URL:** https://www.ncbi.nlm.nih.gov
+**License:** NCBI data is in the public domain for non-commercial use.
+
+**File included:** `data/negative_sequence_fetch_cache.csv`
+
+This file caches sequences fetched from NCBI during data curation
+(`notebooks/01_curate_allergenicity_data.ipynb`) to allow re-running
+curation steps without network access. It does not contain the full
+raw UniProt negative set.
+
+---
+
+## 5. ESM-2 Base Model
+
+**Source:** Meta AI / Hugging Face Hub
+**Model:** `facebook/esm2_t6_8M_UR50D`
+**URL:** https://huggingface.co/facebook/esm2_t6_8M_UR50D
+**License:** MIT License
+**Citation:** Lin Z, et al. "Evolutionary-scale prediction of atomic-level protein
+structure with a language model." Science, 379(6637):1123–1130, 2023.
+https://doi.org/10.1126/science.ade2574
+
+The ESM-2 backbone is **not** included in this repository. It is downloaded
+automatically from Hugging Face on first use. The `resolve_hf_model_source()`
+function in `src/xallergen/baseline_notebook_utils.py` checks for a local
+Hugging Face cache before attempting a download.
+
+---
+
+## Processed Data Files
+
+The following derived data files are included in this repository and do not
+require re-running the full curation pipeline to reproduce paper results:
+
+| File | Generated by | Description |
+|------|-------------|-------------|
+| `data/positives.csv` | nb01 | Protein-level allergen set with epitope intervals |
+| `data/positives_splitA.csv` | nb01 | Training split (80%) |
+| `data/positives_splitB.csv` | nb01 | Test split (20%) |
+| `data/negatives.csv` | nb01 | Standardized non-allergen proteins |
+| `data/negatives_splitA.csv` | nb01 | Training split (80%) |
+| `data/negatives_splitB.csv` | nb01 | Test split (20%) |
+| `data/positive_epitopes_full.csv` | nb01 | Raw IEDB epitopes + fetched sequences |
+| `data/positives_all_epitope_metadata.csv` | nb01 | Full epitope metadata |
+| `data/positives_clusters_cluster.tsv` | nb01 | MMseqs2 cluster assignments (positives) |
+| `data/negatives_clusters_cluster.tsv` | nb01 | MMseqs2 cluster assignments (negatives) |
+| `data/hits.tsv` | nb01 | MMseqs2 cross-search contamination hits |
+| `data/iedb_sequence_fetch_cache.csv` | nb01 | Cached sequence fetches from UniProt/NCBI |
+| `data/negative_sequence_fetch_cache.csv` | nb01 | Cached sequence fetches (negatives) |
+| `data/proteins_epitope_coverage_gt_0_6.csv` | nb01 | High-coverage proteins (QC artifact) |
+
+---
+
+## Citation
+
+If you use the data or code in this repository, please cite the paper:
+
+```bibtex
+@inproceedings{yao2026residue,
+  title     = {Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes},
+  author    = {Yao, Jianzhou and Song, Anxiong and Baerenfaller, Katja and Zhakparov, Damir},
+  booktitle = {ICML 2026 Workshop on Mechanistic Interpretability},
+  year      = {2026},
+}
+```
+
+Please also cite the original data sources (IEDB, UniProt, DeepAlgPro, ESM-2) as
+documented above.

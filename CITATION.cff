@@ -1,0 +1,83 @@
+cff-version: 1.2.0
+message: >
+  If you use this software or data, please cite the paper using the metadata below.
+  For the software alone, you may also cite the repository directly.
+
+type: software
+title: >
+  Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes
+  — Code and Data
+
+# TODO: Replace with final DOI after Zenodo upload or publisher assignment.
+# doi: 10.5281/zenodo.TODO
+
+repository-code: https://github.com/Jeffateth/XAllergen2.0-paper
+license: MIT
+version: v1.0-icml2026-mechinterp
+date-released: "2026"  # TODO: replace with actual release date (YYYY-MM-DD)
+
+authors:
+  - family-names: Yao
+    given-names: Jianzhou
+    affiliation: >
+      Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland;
+      ETH Zurich, Zurich, Switzerland
+    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
+
+  - family-names: Song
+    given-names: Anxiong
+    affiliation: >
+      Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland
+    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
+
+  - family-names: Baerenfaller
+    given-names: Katja
+    affiliation: >
+      Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland;
+      Swiss Institute of Bioinformatics (SIB), Lausanne, Switzerland
+    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
+
+  - family-names: Zhakparov
+    given-names: Damir
+    affiliation: >
+      Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland;
+      Swiss Institute of Bioinformatics (SIB), Lausanne, Switzerland
+    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
+
+abstract: >
+  This repository contains the code, data, and model checkpoints for the paper
+  "Residue-Level Attributions in Protein Language Models Do Not Recover Allergen
+  Epitopes", accepted at the ICML 2026 Workshop on Mechanistic Interpretability.
+  The paper benchmarks whether residue-level attribution scores (Integrated Gradients,
+  Gradient x Input, SmoothGrad) from protein language models align with
+  experimentally annotated allergen epitopes from the IEDB database.
+
+keywords:
+  - protein language models
+  - mechanistic interpretability
+  - allergenicity
+  - integrated gradients
+  - attribution methods
+  - ESM-2
+  - IEDB
+  - epitope localization
+  - bioinformatics
+
+preferred-citation:
+  type: conference-paper
+  title: >
+    Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes
+  authors:
+    - family-names: Yao
+      given-names: Jianzhou
+    - family-names: Song
+      given-names: Anxiong
+    - family-names: Baerenfaller
+      given-names: Katja
+    - family-names: Zhakparov
+      given-names: Damir
+  collection-title: "ICML 2026 Workshop on Mechanistic Interpretability"
+  year: 2026
+  # TODO: Add URL and DOI after acceptance notification / proceedings publication
+  # url: https://openreview.net/TODO
+  # doi: TODO
