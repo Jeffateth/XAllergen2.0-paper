@@ -1,21 +1,14 @@
 # Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes
 
-<table align="center" style="border: 0 !important; border-collapse: collapse;">
-  <tr style="border: 0 !important;">
-    <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
-      <img src="docs/assets/SIAFlogo.png" alt="Swiss Institute of Allergy and Asthma Research" width="135"/>
-    </td>
-    <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
-      <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics" width="165"/>
-    </td>
-    <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
-      <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" width="230"/>
-    </td>
-    <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
-      <img src="docs/assets/ICML-logo.svg" alt="ICML" width="175"/>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="docs/assets/SIAFlogo.png" alt="Swiss Institute of Allergy and Asthma Research" width="135" align="middle"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics" width="165" align="middle"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" width="230" align="middle"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/assets/ICML-logo.svg" alt="ICML" width="175" align="middle"/>
+</p>
 
 <p align="center">
   <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026 MechInterp Workshop" src="https://img.shields.io/badge/Workshop-MechInterp%40ICML%202026-6aa84f?style=for-the-badge" /></a>
