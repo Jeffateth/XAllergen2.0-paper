@@ -40,36 +40,28 @@ See: https://www.uniprot.org/help/license
 
 ### How this file was obtained
 
-The negative protein dataset was downloaded **manually** through the UniProt
-web interface at https://www.uniprot.org. The export filename encodes the
-search filters applied at query time:
+The UniProt-derived negative set was exported manually from the UniProt web interface
+using documented filters. The export filename encodes the filters applied at query
+time; the primary filter `NOT taxonomy_id:10239` excludes all viral sequences (NCBI
+Taxonomy ID 10239). Additional filters are documented in the paper.
 
-- `NOT taxonomy_id:10239` — excludes all viral sequences (NCBI Taxonomy ID 10239
-  corresponds to Viruses/viroids)
-- Additional filters applied at query time are documented in the paper.
-
-The download was performed using the UniProt website's "Download" function,
-selecting TSV format with all reviewed (Swiss-Prot) entries matching the filter.
-
-### Important note on reproduction
-
-Exact reproduction of the raw TSV export requires repeating the documented
-UniProt web search manually. The UniProt database is updated regularly; running
-the same search on a different date may return a different set of entries.
-The processed downstream files (`data/negatives.csv`, `data/negatives_splitA.csv`,
-`data/negatives_splitB.csv`) are included in this repository to support
-reproducibility without requiring re-download.
+Exact reproduction of the raw export requires repeating the documented UniProt web
+search manually. The UniProt database is updated regularly; a search on a different
+date may return a different set of entries. The processed downstream files
+(`data/negatives.csv`, `data/negatives_splitA.csv`, `data/negatives_splitB.csv`) are
+included in this repository to support reproducibility without requiring re-download.
 
 **Downstream processing:** `notebooks/01_curate_allergenicity_data.ipynb`
 (Step 2: standardize headers, remove non-canonical sequences)
 
 ---
 
-## 3. DeepAlgPro Benchmark Dataset
+## 3. DeepAlgPro-derived benchmark data
 
-**Source:** DeepAlgPro (published benchmark dataset)
-**Reference:** [Add DeepAlgPro citation here]
-**License:** See original DeepAlgPro repository for terms.
+We use the released DeepAlgPro train/test FASTA files as the starting point for the
+protein-level benchmark. Exact sequence overlaps with our epitope-grounded residue-level
+benchmark were removed before training and evaluation to avoid leakage. The cleaned
+DeepAlgPro-derived files are included for reproducibility.
 
 **Files included:**
 - `data/deepalgpro_all.train.fasta` — training split FASTA
@@ -77,9 +69,7 @@ reproducibility without requiring re-download.
 - `data/deepalgpro_train_cleaned.csv` — tabular training data
 - `data/deepalgpro_test_cleaned.csv` — tabular test data
 
-These files are used for the DeepAlgPro benchmark comparison reported in the paper.
-The benchmark model was retrained on the XAllergen split using the DeepAlgPro
-architecture; see `notebooks/03_deep_plant_allergy_benchmark.ipynb`.
+Please cite the original DeepAlgPro paper when using these benchmark files.
 
 ---
 

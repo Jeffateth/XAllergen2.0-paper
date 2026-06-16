@@ -1,16 +1,14 @@
 # Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes
 
-<!-- LOGO BLOCK — replace placeholders with actual logos when available -->
-<!-- Check logo usage guidelines for each institution before including -->
-<!--
 <p align="center">
-  <img src="docs/logos/eth_zurich.png" alt="ETH Zurich" height="40" />
+  <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" height="40" />
   &nbsp;&nbsp;
-  <img src="docs/logos/siaf.png" alt="Swiss Institute of Allergy and Asthma Research" height="40" />
+  <img src="docs/assets/SIAFlogo.svg" alt="Swiss Institute of Allergy and Asthma Research (SIAF)" height="40" />
   &nbsp;&nbsp;
-  <img src="docs/logos/sib.png" alt="Swiss Institute of Bioinformatics" height="40" />
+  <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics (SIB)" height="40" />
+  &nbsp;&nbsp;
+  <img src="docs/assets/ICML-logo.svg" alt="ICML 2026" height="40" />
 </p>
--->
 
 <p align="center">
   <!-- Workshop -->
@@ -29,31 +27,18 @@
 
 ## Overview
 
-Protein language models achieve strong allergenicity classification, but does their
-performance reflect genuine immunological understanding — or merely sequence-level
-pattern matching? This paper benchmarks the **residue-level faithfulness** of
-attribution methods on allergen epitope localization: do saliency scores produced by
-Integrated Gradients, Gradient × Input, and SmoothGrad actually align with
-experimentally annotated B-cell and T-cell epitopes from the IEDB?
+Protein language models achieve strong allergenicity classification, but it remains unclear whether their residue-level explanations reflect immunologically meaningful mechanisms. This repository provides the code, data, checkpoints, and precomputed results for an epitope-grounded benchmark evaluating whether attribution scores align with experimentally annotated allergen epitopes.
 
-We curate a reproducible benchmark from IEDB epitope annotations and evaluate four
-model variants — a frozen ESM-2 baseline, two multi-task models with epitope
-supervision, and a retrained DeepPlantAllergy model — using AUROC, AUPRC, and
-Precision@k. We additionally validate attribution faithfulness through masking
-experiments and in silico saturation mutagenesis.
+We evaluate three main classifier families — frozen ESM-2, multi-task ESM-2, and retrained DeepPlantAllergy — with an additional exploratory top-layer-unfrozen MTL checkpoint included in supplementary analyses. Attribution alignment is measured using AUROC, AUPRC, and Precision@k against experimentally annotated allergy-associated epitopes from IEDB, including B-cell and MHC-II-associated T-cell epitope annotations after curation. We further test model faithfulness with masking experiments and characterize model sensitivity through in silico saturation mutagenesis.
 
 ---
 
 ## Key Findings
 
-- Strong protein-level allergenicity classification does not imply residue-level
-  immunological faithfulness.
-- Integrated Gradients can be demonstrably model-faithful under masking experiments
-  while still failing to localize experimentally annotated epitopes.
-- Multi-task training with epitope supervision improves probe scores modestly but
-  does not close the gap to experimental epitope annotation.
-- Attribution methods tested are insufficient as a proxy for immunological
-  interpretability in allergen protein language models.
+- Strong protein-level allergenicity classification does not imply residue-level alignment with experimentally annotated epitopes.
+- Integrated Gradients can be demonstrably model-faithful under masking experiments while still failing to localize annotated epitopes.
+- Multi-task epitope supervision allowed the auxiliary residue head to learn epitope-associated signals, but this did not translate into epitope-aligned classification-head attributions.
+- Attribution methods tested are insufficient as a proxy for immunologically meaningful mechanisms in allergen protein language models.
 
 ---
 
@@ -178,7 +163,7 @@ included model checkpoints and precomputed probe rows:
 | Baseline model training | 03 | Yes (T4/A100, Google Colab) | ~30 min |
 | MTL frozen training | 04 | Yes (T4/A100, Google Colab) | ~60 min |
 | MTL unfrozen training | 05 | Yes (T4/A100, Google Colab) | ~90 min |
-| DeepPlantAllergy benchmark | 03b | Yes (T4/A100, Google Colab) | ~30 min |
+| DeepPlantAllergy benchmark | 03_deep_plant_allergy_benchmark.ipynb | Yes (T4/A100, Google Colab) | ~30 min |
 
 ---
 
@@ -208,7 +193,7 @@ make clean    # removes .venv (safe to re-run make setup after)
 Run notebooks in the following order to reproduce the full pipeline from scratch:
 
 ```
-01 → 02 → 03 → 03b → 04 → 05 → 06 → 07 → 08 → 09
+01 → 02 → 03 → 03_deep_plant_allergy_benchmark → 04 → 05 → 06 → 07 → 08 → 09
 ```
 
 **Notes:**
@@ -260,7 +245,7 @@ If you use this code or data, please cite:
   author    = {Yao, Jianzhou and Song, Anxiong and Baerenfaller, Katja and Zhakparov, Damir},
   booktitle = {ICML 2026 Workshop on Mechanistic Interpretability},
   year      = {2026},
-  url       = {https://openreview.net/TODO},
+  note      = {Accepted at the ICML 2026 Workshop on Mechanistic Interpretability},
 }
 ```
 
@@ -286,11 +271,5 @@ and terms; see [DATA_SOURCES.md](DATA_SOURCES.md).
 
 ## Notes
 
-- This repository is the reproducibility snapshot for the ICML 2026 Mechanistic
-  Interpretability Workshop paper. It corresponds to commit `11b5aef` of the
-  development repository.
-- The `uv.lock` file is the authoritative reproducibility artifact for the Python
-  environment. Do not delete it.
-- Figures are saved in both PDF (for paper submission) and PNG (for display).
-- The `results/` directory contains precomputed outputs. Running the full pipeline
-  will overwrite these files.
+- `uv.lock` is the authoritative reproducibility artifact for the Python environment.
+- Figures are saved in both PDF and PNG. The `results/` directory contains precomputed outputs; running the full pipeline will overwrite them.
