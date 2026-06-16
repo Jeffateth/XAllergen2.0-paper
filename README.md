@@ -1,10 +1,10 @@
 # Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes
 
 <p align="center">
-  <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" width="260" style="display:inline-block; margin: 0 18px;"/>
-  <img src="docs/assets/SIAFlogo.png" alt="Swiss Institute of Allergy and Asthma Research" width="210" style="display:inline-block; margin: 0 18px;"/>
-  <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics" width="160" style="display:inline-block; margin: 0 18px;"/>
-  <img src="docs/assets/ICML-logo.svg" alt="ICML" width="190" style="display:inline-block; margin: 0 18px;"/>
+  <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" width="240" style="display:inline-block; margin: 0 20px; vertical-align: middle;"/>
+  <img src="docs/assets/SIAFlogo.png" alt="Swiss Institute of Allergy and Asthma Research" width="145" style="display:inline-block; margin: 0 20px; vertical-align: middle;"/>
+  <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics" width="170" style="display:inline-block; margin: 0 20px; vertical-align: middle;"/>
+  <img src="docs/assets/ICML-logo.svg" alt="ICML" width="190" style="display:inline-block; margin: 0 20px; vertical-align: middle;"/>
 </p>
 <p align="center">
   <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026 MechInterp Workshop" src="https://img.shields.io/badge/Workshop-MechInterp%40ICML%202026-6aa84f?style=for-the-badge" /></a>
