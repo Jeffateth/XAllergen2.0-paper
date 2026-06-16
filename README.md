@@ -3,13 +3,13 @@
 <table align="center" style="border: 0 !important; border-collapse: collapse;">
   <tr style="border: 0 !important;">
     <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
-      <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" width="230"/>
-    </td>
-    <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
       <img src="docs/assets/SIAFlogo.png" alt="Swiss Institute of Allergy and Asthma Research" width="135"/>
     </td>
     <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
       <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics" width="165"/>
+    </td>
+    <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
+      <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" width="230"/>
     </td>
     <td align="center" valign="middle" style="border: 0 !important; padding: 0 28px;">
       <img src="docs/assets/ICML-logo.svg" alt="ICML" width="175"/>
@@ -18,9 +18,8 @@
 </table>
 <p align="center">
   <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026 MechInterp Workshop" src="https://img.shields.io/badge/Workshop-MechInterp%40ICML%202026-6aa84f?style=for-the-badge" /></a>
+  <img alt="arXiv forthcoming" src="https://img.shields.io/badge/arXiv-forthcoming-b31b1b.svg?style=for-the-badge" />
   <img alt="OpenReview forthcoming" src="https://img.shields.io/badge/OpenReview-forthcoming-blue?style=for-the-badge" />
-  <a href="https://www.python.org/downloads/release/python-3135/"><img alt="Python 3.13.5" src="https://img.shields.io/badge/python-3.13.5-blue?style=for-the-badge" /></a>
-  <a href="https://pytorch.org/"><img alt="PyTorch 2.10" src="https://img.shields.io/badge/PyTorch-2.10.0-ee4c2c?style=for-the-badge&logo=pytorch&logoColor=white" /></a>
 </p>
 
 ---
