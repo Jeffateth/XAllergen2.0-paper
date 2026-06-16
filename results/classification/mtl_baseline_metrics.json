@@ -1,6 +1,6 @@
 {
   "esm_model_name": "esm2_t6_8M_UR50D",
-  "baseline_checkpoint_path": "/content/XAllergen2.0/models/baseline_frozen_esm2.pt",
+  "baseline_checkpoint_path": "models/baseline_frozen_esm2.pt",
   "architecture_hyperparameters": {
     "hidden_dim": 128,
     "dropout": 0.3,

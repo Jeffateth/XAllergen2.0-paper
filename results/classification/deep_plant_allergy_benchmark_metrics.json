@@ -4,7 +4,7 @@
   "embedding_model": "facebook/esm1b_t33_650M_UR50S",
   "seed": 42,
   "best_epoch": 43,
-  "checkpoint_path": "/content/drive/MyDrive/XAllergen2.0/models/deep_plant_allergy_benchmark.pt",
+  "checkpoint_path": "models/deep_plant_allergy_benchmark.pt",
   "Split": "Test",
   "Loss": 0.18637992039151574,
   "Accuracy": 0.9389978213507625,

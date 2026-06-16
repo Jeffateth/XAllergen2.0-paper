@@ -1,26 +1,23 @@
 # Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes
 
 <p align="center">
-  <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" height="40" />
-  &nbsp;&nbsp;
-  <img src="docs/assets/SIAFlogo.svg" alt="Swiss Institute of Allergy and Asthma Research (SIAF)" height="40" />
-  &nbsp;&nbsp;
-  <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics (SIB)" height="40" />
-  &nbsp;&nbsp;
-  <img src="docs/assets/ICML-logo.svg" alt="ICML 2026" height="40" />
+  <img src="docs/assets/eth-logo-pos.png" alt="ETH Zurich" width="260" style="display:inline-block; margin: 0 18px;"/>
+  <img src="docs/assets/SIAFlogo.svg" alt="Swiss Institute of Allergy and Asthma Research" width="230" style="display:inline-block; margin: 0 18px;"/>
+  <img src="docs/assets/logo.svg" alt="Swiss Institute of Bioinformatics" width="200" style="display:inline-block; margin: 0 18px;"/>
+  <img src="docs/assets/ICML-logo.svg" alt="ICML" width="170" style="display:inline-block; margin: 0 18px;"/>
+</p>
+
+<p align="center" style="font-size: 0.85em; color: gray;">
+Logos are used in accordance with the respective institutional and conference guidelines.
 </p>
 
 <p align="center">
-  <!-- Workshop -->
-  <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026" src="https://img.shields.io/badge/ICML%202026-Mechanistic%20Interpretability%20Workshop-blue.svg" /></a>
-  <!-- Code license -->
-  <a href="LICENSE"><img alt="Code: MIT" src="https://img.shields.io/badge/code-MIT-green.svg" /></a>
-  <!-- Docs/figures license -->
-  <a href="LICENSE-CC-BY-4.0.md"><img alt="Docs/Figures: CC BY 4.0" src="https://img.shields.io/badge/docs%20%2F%20figures-CC%20BY%204.0-lightgrey.svg" /></a>
-  <!-- Python -->
-  <a href="https://www.python.org/downloads/release/python-3135/"><img alt="Python 3.13.5" src="https://img.shields.io/badge/python-3.13.5-blue.svg" /></a>
-  <!-- PyTorch -->
-  <a href="https://pytorch.org/"><img alt="PyTorch 2.10" src="https://img.shields.io/badge/PyTorch-2.10.0-ee4c2c.svg?logo=pytorch&logoColor=white" /></a>
+  <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026 MechInterp Workshop" src="https://img.shields.io/badge/Workshop-MechInterp%40ICML%202026-6aa84f?style=for-the-badge" /></a>
+  <img alt="OpenReview forthcoming" src="https://img.shields.io/badge/OpenReview-forthcoming-blue?style=for-the-badge" />
+  <a href="LICENSE"><img alt="Code: MIT" src="https://img.shields.io/badge/code-MIT-green?style=for-the-badge" /></a>
+  <a href="LICENSE-CC-BY-4.0.md"><img alt="Docs/Figures: CC BY 4.0" src="https://img.shields.io/badge/docs%20%2F%20figures-CC%20BY%204.0-lightgrey?style=for-the-badge" /></a>
+  <a href="https://www.python.org/downloads/release/python-3135/"><img alt="Python 3.13.5" src="https://img.shields.io/badge/python-3.13.5-blue?style=for-the-badge" /></a>
+  <a href="https://pytorch.org/"><img alt="PyTorch 2.10" src="https://img.shields.io/badge/PyTorch-2.10.0-ee4c2c?style=for-the-badge&logo=pytorch&logoColor=white" /></a>
 </p>
 
 ---
@@ -44,11 +41,17 @@ We evaluate three main classifier families — frozen ESM-2, multi-task ESM-2, a
 
 ## Authors and Affiliations
 
-**Jianzhou Yao**¹³ · **Anxiong Song**¹ · **Katja Baerenfaller**¹² · **Damir Zhakparov**¹²
-
-¹ Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland
-² Swiss Institute of Bioinformatics (SIB), Lausanne, Switzerland
-³ ETH Zurich, Zurich, Switzerland
+<p align="center">
+  <b>Jianzhou Yao</b><sup>1,3</sup> &nbsp;·&nbsp;
+  <b>Anxiong Song</b><sup>1</sup> &nbsp;·&nbsp;
+  <b>Katja Baerenfaller</b><sup>1,2</sup> &nbsp;·&nbsp;
+  <b>Damir Zhakparov</b><sup>1,2</sup>
+</p>
+<p align="center">
+  <sup>1</sup> Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland &nbsp;·&nbsp;
+  <sup>2</sup> Swiss Institute of Bioinformatics (SIB), Lausanne, Switzerland &nbsp;·&nbsp;
+  <sup>3</sup> ETH Zurich, Zurich, Switzerland
+</p>
 
 ---
 
