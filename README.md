@@ -16,6 +16,7 @@
     </td>
   </tr>
 </table>
+
 <p align="center">
   <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026 MechInterp Workshop" src="https://img.shields.io/badge/Workshop-MechInterp%40ICML%202026-6aa84f?style=for-the-badge" /></a>
   <img alt="arXiv forthcoming" src="https://img.shields.io/badge/arXiv-forthcoming-b31b1b.svg?style=for-the-badge" />
@@ -24,36 +25,22 @@
 
 ---
 
+Official code release for the ICML 2026 Mechanistic Interpretability Workshop paper:
+
+**Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes**
+
+**Authors:** Jianzhou Yao, Anxiong Song, Katja Baerenfaller, Damir Zhakparov  
+**Affiliations:** Swiss Institute of Allergy and Asthma Research; Swiss Institute of Bioinformatics; ETH Zurich
+
+---
+
 ## Overview
 
-Protein language models achieve strong allergenicity classification, but it remains unclear whether their residue-level explanations reflect immunologically meaningful mechanisms. This repository provides the code, data, checkpoints, and precomputed results for an epitope-grounded benchmark evaluating whether attribution scores align with experimentally annotated allergen epitopes.
+Deep allergenicity classifiers are increasingly used in safety screening of novel foods, and recent protein language models have substantially improved protein-level allergenicity prediction. However, whether their explanations capture biologically meaningful information remains unclear.
 
-We evaluate three main classifier families — frozen ESM-2, multi-task ESM-2, and retrained DeepPlantAllergy — with an additional exploratory top-layer-unfrozen MTL checkpoint included in supplementary analyses. Attribution alignment is measured using AUROC, AUPRC, and Precision@k against experimentally annotated allergy-associated epitopes from IEDB, including B-cell and MHC-II-associated T-cell epitope annotations after curation. We further test model faithfulness with masking experiments and characterize model sensitivity through in silico saturation mutagenesis.
+This repository provides the code, data, checkpoints, and precomputed results for an epitope-grounded residue-level benchmark for quantitatively evaluating attribution faithfulness in protein allergenicity models. Across frozen ESM-2, multi-task ESM-2, and DeepPlantAllergy, protein-level classification was robust, yet classification-head explanation signals did not significantly exceed random in residue-level alignment with annotated epitopes across AUROC, AUPRC, and Precision@k.
 
----
-
-## Key Findings
-
-- Strong protein-level allergenicity classification does not imply residue-level alignment with experimentally annotated epitopes.
-- Integrated Gradients can be demonstrably model-faithful under masking experiments while still failing to localize annotated epitopes.
-- Multi-task epitope supervision allowed the auxiliary residue head to learn epitope-associated signals, but this did not translate into epitope-aligned classification-head attributions.
-- Attribution methods tested are insufficient as a proxy for immunologically meaningful mechanisms in allergen protein language models.
-
----
-
-## Authors and Affiliations
-
-<p align="center">
-  <b>Jianzhou Yao</b><sup>1,2</sup> &nbsp;·&nbsp;
-  <b>Anxiong Song</b><sup>1,2</sup> &nbsp;·&nbsp;
-  <b>Katja Baerenfaller</b><sup>1,3</sup> &nbsp;·&nbsp;
-  <b>Damir Zhakparov</b><sup>1,3</sup>
-</p>
-<p align="center">
-  <sup>1</sup> Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland &nbsp;·&nbsp;
-  <sup>2</sup> ETH Zurich, Zurich, Switzerland &nbsp;·&nbsp;
-  <sup>3</sup> Swiss Institute of Bioinformatics (SIB), Lausanne, Switzerland
-</p>
+Integrated Gradients identified residues that were functionally important to the model, but did not overlap annotated epitopes. Saturation mutagenesis further suggested that classifiers may rely on physicochemical and compositional sequence features rather than epitope-specific mechanisms.
 
 ---
 
@@ -62,187 +49,87 @@ We evaluate three main classifier families — frozen ESM-2, multi-task ESM-2, a
 **Requirements:** [`uv`](https://docs.astral.sh/uv/) and Python 3.13.5.
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/Jeffateth/XAllergen2.0-paper.git
 cd XAllergen2.0-paper
 
-# 2. Create the environment and install locked dependencies
 make setup
-
-# 3. Register the Jupyter kernel (for notebook execution)
 make kernel
-
-# 4. Verify the environment
 make doctor
 ```
 
-To reproduce all paper figures directly from included precomputed results
-(no retraining required):
+Reproduce paper figures from included precomputed results:
 
 ```bash
 python replot_probe_figures.py
-# or open notebooks/08_compare_all_model_probes.ipynb
+# or run notebooks/08_compare_all_model_probes.ipynb
 ```
 
 ---
 
 ## Repository Structure
 
-```
+```text
 XAllergen2.0-paper/
-├── README.md                          This file
-├── LICENSE                            MIT License (code)
-├── LICENSE-CC-BY-4.0.md               CC BY 4.0 (docs, figures)
-├── CITATION.cff                       Machine-readable citation
-├── DATA_SOURCES.md                    Data provenance and licenses
-├── pyproject.toml                     Python dependencies (pinned)
-├── uv.lock                            Locked dependency graph
-├── Makefile                           Environment setup shortcuts
-├── .python-version                    Python version pin (3.13.5)
-├── replot_probe_figures.py            Regenerate figures from saved CSVs
-│
-├── data/
-│   ├── t_cell_b_cell_MHC_II_epitopes.csv       IEDB epitope export
-│   ├── positives.csv / positives_splitA/B.csv  Allergen protein splits
-│   ├── negatives.csv / negatives_splitA/B.csv  Non-allergen splits
-│   ├── deepalgpro_*.csv / *.fasta              DeepAlgPro benchmark data
-│   ├── iedb_sequence_fetch_cache.csv           Cached sequence fetches
-│   └── ...                                     See DATA_SOURCES.md
-│
-├── models/
-│   ├── README.md                      Checkpoint documentation
-│   ├── baseline_frozen_esm2.pt        Frozen ESM-2 baseline
-│   ├── mtl_frozen_esm2_epitope.pt     MTL frozen backbone
-│   ├── mtl_top1_unfrozen_esm2_epitope.pt  MTL fine-tuned backbone
-│   └── deep_plant_allergy_benchmark.pt    DeepPlantAllergy retrained
-│
-├── notebooks/
-│   ├── 01_curate_allergenicity_data.ipynb     Data curation pipeline
-│   ├── 02_data_exploration_deepalgpro.ipynb   Dataset EDA
-│   ├── 03_baseline_model_esm2.ipynb           Baseline training (Colab/local)
-│   ├── 03_deep_plant_allergy_benchmark.ipynb  DeepPlantAllergy benchmark
-│   ├── 04_mtl_epitope_supervision.ipynb       MTL frozen training
-│   ├── 05_mtl_top1_unfrozen_epitope_supervision.ipynb  MTL fine-tuned training
-│   ├── 06_generate_probe_rows.ipynb           Residue attribution analysis
-│   ├── 07_insilico_mutagenesis.ipynb          Saturation mutagenesis
-│   ├── 08_compare_all_model_probes.ipynb      Paper figures and tables
-│   └── 09_unfiltered_ig_masking_sensitivity.ipynb  Supplementary analysis
-│
-├── results/
-│   ├── classification/                Protein-level classification metrics
-│   ├── probing/
-│   │   ├── rows/                     Per-protein residue attribution rows
-│   │   └── summaries/                Bootstrap summaries and comparisons
-│   ├── insilico_mutagenesis/         Mutagenesis tables and figures
-│   ├── paper_figures/                Final paper figures (PDF + PNG)
-│   └── paper_tables/                 Final paper tables (CSV + LaTeX)
-│
-└── src/xallergen/
-    ├── baseline_notebook_utils.py    ESM-2 model, training, IG utilities
-    ├── mtl_epitope_notebook_utils.py MTL model and probing utilities
-    ├── deep_plant_allergy_utils.py   DeepPlantAllergy architecture
-    ├── plotting_paper_figures.py     Figure rendering
-    └── plotting_insilico_mutagenesis.py  Mutagenesis plots
+├── data/                    Curated data, splits, epitope masks, benchmark files
+├── models/                  Trained checkpoints
+├── notebooks/               Reproducible analysis notebooks 01–09
+├── results/                 Precomputed outputs, figures, and tables
+├── src/xallergen/           Model, attribution, and plotting utilities
+├── DATA_SOURCES.md
+├── CITATION.cff
+├── LICENSE
+├── LICENSE-CC-BY-4.0.md
+├── pyproject.toml
+├── uv.lock
+├── Makefile
+└── replot_probe_figures.py
 ```
 
 ---
 
 ## Reproducibility
 
-### What can be reproduced directly
+The included checkpoints and precomputed outputs allow figure regeneration without GPU retraining.
 
-The following results can be reproduced **without GPU retraining**, using the
-included model checkpoints and precomputed probe rows:
-
-| Result | Source |
+| Output | Source |
 |--------|--------|
-| All paper figures (PDF + PNG) | `results/paper_figures/` or notebook 08 |
-| All paper tables (CSV + LaTeX) | `results/paper_tables/` or notebook 08 |
-| Mutagenesis figures | `results/insilico_mutagenesis/` or notebooks 07–08 |
-| Residue attribution scores | `results/probing/rows/` or notebook 06 |
+| Paper figures | `results/paper_figures/` or notebook 08 |
+| Paper tables | `results/paper_tables/` or notebook 08 |
+| Residue attribution rows | `results/probing/rows/` or notebook 06 |
+| Mutagenesis results | `results/insilico_mutagenesis/` or notebooks 07–08 |
 
-### What requires GPU retraining
+Training from scratch requires GPU execution for the model notebooks:
 
-| Step | Notebook | GPU required | Runtime |
-|------|----------|-------------|---------|
-| Baseline model training | 03 | Yes (T4/A100, Google Colab) | ~30 min |
-| MTL frozen training | 04 | Yes (T4/A100, Google Colab) | ~60 min |
-| MTL unfrozen training | 05 | Yes (T4/A100, Google Colab) | ~90 min |
-| DeepPlantAllergy benchmark | 03_deep_plant_allergy_benchmark.ipynb | Yes (T4/A100, Google Colab) | ~30 min |
+| Step | Notebook |
+|------|----------|
+| Frozen ESM-2 baseline | `03_baseline_model_esm2.ipynb` |
+| DeepPlantAllergy benchmark | `03_deep_plant_allergy_benchmark.ipynb` |
+| MTL ESM-2 | `04_mtl_epitope_supervision.ipynb` |
+| Top-layer-unfrozen MTL ESM-2 | `05_mtl_top1_unfrozen_epitope_supervision.ipynb` |
 
----
+Notebook execution order:
 
-## Data Sources
-
-See [DATA_SOURCES.md](DATA_SOURCES.md) for full documentation of:
-- IEDB epitope annotations (CC BY 4.0)
-- UniProt negatives (CC BY 4.0)
-- DeepAlgPro benchmark FASTA files
-- ESM-2 base model (MIT License, auto-downloaded from Hugging Face)
-
----
-
-## Running the Pipeline
-
-### Environment
-
-```bash
-make setup    # creates .venv, installs locked dependencies via uv
-make kernel   # registers Jupyter kernel "xallergen2"
-make doctor   # verifies all imports
-make clean    # removes .venv (safe to re-run make setup after)
-```
-
-### Notebook execution order
-
-Run notebooks in the following order to reproduce the full pipeline from scratch:
-
-```
+```text
 01 → 02 → 03 → 03_deep_plant_allergy_benchmark → 04 → 05 → 06 → 07 → 08 → 09
 ```
 
-**Notes:**
-- Notebooks 03, 04, 05 support both local execution (`RUN_TARGET = "local"`)
-  and Google Colab (`RUN_TARGET = "colab"`). Set the `RUN_TARGET` variable in
-  the first cell before running.
-- Notebooks 06–09 are designed for local execution.
-- Notebook 01 requires [MMseqs2](https://github.com/soedinglab/MMseqs2) to be
-  installed and available on `PATH` for sequence clustering. All downstream files
-  are already included; nb01 only needs to be re-run if regenerating the dataset
-  from scratch.
-- Notebook 01 uses the NCBI Entrez API to fetch protein sequences. Set
-  `ENTREZ_EMAIL` to a valid email address before running.
-
-### Regenerate figures without retraining
-
-```bash
-# From precomputed probe rows and mutagenesis CSVs:
-python replot_probe_figures.py
-
-# Or open notebook 08 and run all cells (local, ~5 min).
-```
-
-### Random seed
-
-All stochastic steps use `RANDOM_STATE = 42` (notebooks 03–07) and
-`RANDOM_STATE = 13` (notebook 01, data splitting). These are set in each
-notebook's configuration cell.
+Notes:
+- Notebooks 03–05 support local and Google Colab execution via `RUN_TARGET`.
+- Notebook 01 requires MMseqs2 on `PATH` if regenerating the dataset from scratch.
+- Notebook 01 uses NCBI Entrez; set `ENTREZ_EMAIL` before running.
+- Random states are set in the notebook configuration cells.
 
 ---
 
-## Model Checkpoints
+## Data and Checkpoints
 
-See [models/README.md](models/README.md) for detailed checkpoint documentation,
-including which notebook regenerates each checkpoint and which figures depend on it.
+Data provenance and redistribution notes are documented in [DATA_SOURCES.md](DATA_SOURCES.md).
 
-The ESM-2 base model (`facebook/esm2_t6_8M_UR50D`) is downloaded automatically
-from Hugging Face Hub on first use.
+Checkpoint documentation is provided in [models/README.md](models/README.md). The ESM-2 base model (`facebook/esm2_t6_8M_UR50D`) is downloaded automatically from Hugging Face Hub on first use.
 
 ---
 
 ## Citation
-
-If you use this code or data, please cite:
 
 ```bibtex
 @inproceedings{yao2026residue,
@@ -254,27 +141,20 @@ If you use this code or data, please cite:
 }
 ```
 
-Please also cite the underlying resources:
-- **IEDB:** Vita R et al., Nucleic Acids Research 47(D1):D339–D343, 2019
-- **ESM-2:** Lin Z et al., Science 379(6637):1123–1130, 2023
-- **MMseqs2:** Steinegger M & Söding J, Nature Biotechnology 35:1026–1028, 2017
+Please also cite the underlying resources used in the benchmark, including IEDB, ESM-2, MMseqs2, DeepAlgPro, DeepPlantAllergy, and UniProt where applicable.
 
 ---
 
 ## License
 
-Code in this repository is released under the **MIT License** (see [LICENSE](LICENSE)).
+Code is released under the [MIT License](LICENSE).
 
-Paper text, documentation, and generated figures are released under
-**Creative Commons Attribution 4.0 International (CC BY 4.0)**
-(see [LICENSE-CC-BY-4.0.md](LICENSE-CC-BY-4.0.md)), unless otherwise stated.
+Paper text, documentation, and generated figures are released under [CC BY 4.0](LICENSE-CC-BY-4.0.md), unless otherwise stated.
 
-Datasets are redistributed or referenced according to their original source licenses
-and terms; see [DATA_SOURCES.md](DATA_SOURCES.md).
+Datasets are redistributed or referenced according to their original source licenses and terms; see [DATA_SOURCES.md](DATA_SOURCES.md).
 
 ---
 
-## Notes
-
-- `uv.lock` is the authoritative reproducibility artifact for the Python environment.
-- Figures are saved in both PDF and PNG. The `results/` directory contains precomputed outputs; running the full pipeline will overwrite them.
+<p align="center" style="font-size: 0.85em; color: gray;">
+Logos are used in accordance with the respective institutional and conference guidelines.
+</p>
