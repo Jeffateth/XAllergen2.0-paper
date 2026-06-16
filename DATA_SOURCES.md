@@ -47,9 +47,6 @@ search filters applied at query time:
 - `NOT taxonomy_id:10239` — excludes all viral sequences (NCBI Taxonomy ID 10239
   corresponds to Viruses/viroids)
 - Additional filters applied at query time are documented in the paper.
-  **[ACTION REQUIRED: Please confirm and expand the full UniProt query string here
-  before public release. The filename suggests at least one additional `NOT taxonomy`
-  filter was active at download time.]**
 
 The download was performed using the UniProt website's "Download" function,
 selecting TSV format with all reviewed (Swiss-Prot) entries matching the filter.
@@ -72,7 +69,7 @@ reproducibility without requiring re-download.
 
 **Source:** DeepAlgPro (published benchmark dataset)
 **Reference:** [Add DeepAlgPro citation here]
-**License:** [Confirm DeepAlgPro dataset license before public release]
+**License:** See original DeepAlgPro repository for terms.
 
 **Files included:**
 - `data/deepalgpro_all.train.fasta` — training split FASTA
@@ -83,9 +80,6 @@ reproducibility without requiring re-download.
 These files are used for the DeepAlgPro benchmark comparison reported in the paper.
 The benchmark model was retrained on the XAllergen split using the DeepAlgPro
 architecture; see `notebooks/03_deep_plant_allergy_benchmark.ipynb`.
-
-**[ACTION REQUIRED: Confirm that redistribution of the DeepAlgPro FASTA files is
-permitted under their original license before public release.]**
 
 ---
 

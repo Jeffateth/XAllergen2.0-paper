@@ -13,10 +13,8 @@
 -->
 
 <p align="center">
-  <!-- Paper -->
-  <a href="https://openreview.net/TODO"><img alt="Paper" src="https://img.shields.io/badge/paper-OpenReview-b31b1b.svg" /></a>
   <!-- Workshop -->
-  <a href="https://icml.cc/TODO"><img alt="ICML 2026" src="https://img.shields.io/badge/ICML%202026-Mechanistic%20Interpretability%20Workshop-blue.svg" /></a>
+  <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026" src="https://img.shields.io/badge/ICML%202026-Mechanistic%20Interpretability%20Workshop-blue.svg" /></a>
   <!-- Code license -->
   <a href="LICENSE"><img alt="Code: MIT" src="https://img.shields.io/badge/code-MIT-green.svg" /></a>
   <!-- Docs/figures license -->

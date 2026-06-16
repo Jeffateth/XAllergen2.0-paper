@@ -8,13 +8,10 @@ title: >
   Residue-Level Attributions in Protein Language Models Do Not Recover Allergen Epitopes
   — Code and Data
 
-# TODO: Replace with final DOI after Zenodo upload or publisher assignment.
-# doi: 10.5281/zenodo.TODO
-
 repository-code: https://github.com/Jeffateth/XAllergen2.0-paper
 license: MIT
 version: v1.0-icml2026-mechinterp
-date-released: "2026"  # TODO: replace with actual release date (YYYY-MM-DD)
+date-released: "2026-06-16"
 
 authors:
   - family-names: Yao
@@ -22,27 +19,23 @@ authors:
     affiliation: >
       Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland;
       ETH Zurich, Zurich, Switzerland
-    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
 
   - family-names: Song
     given-names: Anxiong
     affiliation: >
       Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland
-    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
 
   - family-names: Baerenfaller
     given-names: Katja
     affiliation: >
       Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland;
       Swiss Institute of Bioinformatics (SIB), Lausanne, Switzerland
-    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
 
   - family-names: Zhakparov
     given-names: Damir
     affiliation: >
       Swiss Institute of Allergy and Asthma Research (SIAF), Davos, Switzerland;
       Swiss Institute of Bioinformatics (SIB), Lausanne, Switzerland
-    orcid: "https://orcid.org/TODO"  # TODO: add ORCID if available
 
 abstract: >
   This repository contains the code, data, and model checkpoints for the paper
@@ -77,7 +70,5 @@ preferred-citation:
     - family-names: Zhakparov
       given-names: Damir
   collection-title: "ICML 2026 Workshop on Mechanistic Interpretability"
+  url: "https://mechinterpworkshop.com/"
   year: 2026
-  # TODO: Add URL and DOI after acceptance notification / proceedings publication
-  # url: https://openreview.net/TODO
-  # doi: TODO
