@@ -12,8 +12,9 @@
 
 <p align="center">
   <a href="https://mechinterpworkshop.com/"><img alt="ICML 2026 MechInterp Workshop" src="https://img.shields.io/badge/Workshop-MechInterp%40ICML%202026-6aa84f?style=for-the-badge" /></a>
-  <img alt="arXiv forthcoming" src="https://img.shields.io/badge/arXiv-forthcoming-b31b1b.svg?style=for-the-badge" />
-  <img alt="OpenReview forthcoming" src="https://img.shields.io/badge/OpenReview-forthcoming-blue?style=for-the-badge" />
+  <a href="https://doi.org/10.48550/arXiv.2606.22181"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2606.22181-b31b1b.svg?style=for-the-badge" /></a>
+  <a href="https://openreview.net/forum?id=SQus9iV9sf"><img alt="OpenReview" src="https://img.shields.io/badge/OpenReview-forum-blue?style=for-the-badge" /></a>
+  <a href="docs/assets/XAllergen_Poster_ICML.pdf"><img alt="Poster" src="https://img.shields.io/badge/Poster-PDF-orange?style=for-the-badge" /></a>
 </p>
 
 ---
